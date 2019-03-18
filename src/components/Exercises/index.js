@@ -1,6 +1,17 @@
 import React from "react";
-import {Grid, Paper} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
+import RightPane from "./RightPane";
+import LeftPane from "./LeftPane";
 // App biz logic
+
+// Many ways to style - Material UI uses JSS
+const styles = {
+  Paper: {
+    padding: 20,
+    marginTop: 10,
+    marginBottom: 10
+  }
+};
 
 export default props => (
   // Grid (2 types) either has to be a grid container or a grid item
@@ -14,10 +25,10 @@ export default props => (
     {/* can be customized sm={12} */}
     <Grid item sm={8}>
       {/* if sm is not customized, the grid will automatically adjust if we add more items */}
-      <Paper>Left Pane</Paper>
+      <LeftPane styles={styles} />
     </Grid>
     <Grid item sm={4}>
-      <Paper>Right Pane</Paper>
+      <RightPane styles={styles} />
     </Grid>
   </Grid>
 );
