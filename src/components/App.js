@@ -6,7 +6,7 @@ import {muscles, exercises} from "../store";
 export default class extends Component {
   state = {exercises};
 
-  getExercisesByMuscleGroup(selected) {
+  getExercisesByMuscleGroup() {
     return Object.entries(
       // Object.entries turns result into an array
       // w/o Object.entries, reduce will return an object of muscle categories
@@ -34,12 +34,12 @@ export default class extends Component {
   }
 
   render() {
-    console.log(this.getExercisesByMuscleGroup());
+    const exercises = this.getExercisesByMuscleGroup();
 
     return (
       <>
         <Header />
-        <Exercises />
+        <Exercises exercises={exercises} />
         <Footer muscles={muscles} />
       </>
     );
