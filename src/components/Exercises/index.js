@@ -13,7 +13,9 @@ const styles = {
   Paper: {
     padding: 20,
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    height: "500px",
+    overflowY: "auto"
   }
 };
 
@@ -50,7 +52,12 @@ export default ({exercises}) => (
       </Paper>
     </Grid>
     <Grid item sm>
-      <Paper style={styles.Paper}>Right Pane</Paper>
+      <Paper style={styles.Paper}>
+        <Typography variant="display1">Welcome!</Typography>
+        <Typography variant="subheading" style={{marginTop: 20}}>
+          Please select an exercise from the list on the left.
+        </Typography>
+      </Paper>
     </Grid>
   </Grid>
 );
