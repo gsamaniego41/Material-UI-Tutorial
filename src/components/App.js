@@ -49,7 +49,7 @@ export default class extends Component {
     return (
       <>
         <Header />
-        <Exercises exercises={exercises} />
+        <Exercises exercises={exercises} category={category} />
         <Footer
           category={category}
           muscles={muscles}
