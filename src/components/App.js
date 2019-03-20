@@ -4,7 +4,7 @@ import Exercises from "./Exercises";
 import {muscles, exercises} from "../store";
 
 export default class extends Component {
-  state = {exercises, category: ""};
+  state = {exercises, category: "", exercise: {}};
 
   getExercisesByMuscleGroup() {
     return Object.entries(
@@ -39,9 +39,23 @@ export default class extends Component {
     });
   };
 
+  handleExerciseSelected = id => {
+    this.setState(
+      // exercise refers to the currently selected
+      // exercise that we clicked on from the left pane
+
+      prevState => ({
+        exercise: prevState.exercises.find(ex => ex.id === id)
+      })
+      // prevState is a callback that returns a new state obj that's going to be merged
+      // reason: we don't wanna call this.state.exercise bec
+      // something else in the app might have already change it while setState runs (asynchronous)
+    );
+  };
+
   render() {
     const exercises = this.getExercisesByMuscleGroup(),
-      {category} = this.state;
+      {category, exercise} = this.state;
     // same as:
     //    const exercises = this.getExercisesByMuscleGroup();
     //    const {category} = this.state;
@@ -49,7 +63,12 @@ export default class extends Component {
     return (
       <>
         <Header />
-        <Exercises exercises={exercises} category={category} />
+        <Exercises
+          exercise={exercise}
+          exercises={exercises}
+          category={category}
+          onSelect={this.handleExerciseSelected}
+        />
         <Footer
           category={category}
           muscles={muscles}

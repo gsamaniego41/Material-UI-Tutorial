@@ -19,7 +19,16 @@ const styles = {
   }
 };
 
-export default ({exercises, category}) => (
+export default ({
+  exercises,
+  category,
+  onSelect,
+  exercise: {
+    id,
+    title = "Welcome!",
+    description = "Please select an exercise from the list on the left."
+  }
+}) => (
   <Grid container>
     <Grid item sm>
       <Paper style={styles.Paper}>
@@ -35,8 +44,10 @@ export default ({exercises, category}) => (
                 {group}
               </Typography>
               <List>
-                {exercises.map(({title}) => (
-                  <ListItem key={title} button>
+                {/* When user clicks on category in left pane, 
+                we want to display the contents of that exercise on the right pane */}
+                {exercises.map(({id, title}) => (
+                  <ListItem key={id} button onClick={() => onSelect(id)}>
                     <ListItemText primary={title} />
                   </ListItem>
                 ))}
@@ -48,9 +59,9 @@ export default ({exercises, category}) => (
     </Grid>
     <Grid item sm>
       <Paper style={styles.Paper}>
-        <Typography variant="display1">Welcome!</Typography>
+        <Typography variant="display1">{title}</Typography>
         <Typography variant="subheading" style={{marginTop: 20}}>
-          Please select an exercise from the list on the left.
+          {description}
         </Typography>
       </Paper>
     </Grid>
