@@ -19,11 +19,16 @@ export default ({muscles, category, onSelect}) => {
     Otherwise, it returns -1, indicating no element passed the test.
     */
 
+  const onIndexSelect = (e, index) =>
+    onSelect(index === 0 ? "" : muscles[index - 1]);
+  // returns the category then passes it up to App.js
+  // handleCategorySelected()
+
   return (
     <Paper>
       <Tabs
         value={index}
-        // onChange={}
+        onChange={onIndexSelect}
         indicatorColor="primary"
         textColor="primary"
         centered
