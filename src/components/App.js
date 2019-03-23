@@ -33,13 +33,13 @@ export default class extends Component {
     );
   }
 
-  handleCategorySelected = category => {
+  handleCategorySelect = category => {
     this.setState({
       category
     });
   };
 
-  handleExerciseSelected = id => {
+  handleExerciseSelect = id => {
     this.setState(
       // exercise refers to the currently selected
       // exercise that we clicked on from the left pane
@@ -53,6 +53,13 @@ export default class extends Component {
     );
   };
 
+  handleExerciseCreate = exercise => {
+    // ({exercises}) === prevState.exercises
+    this.setState(({exercises}) => ({
+      exercises: [...exercises, exercise]
+    }));
+  };
+
   render() {
     const exercises = this.getExercisesByMuscleGroup(),
       {category, exercise} = this.state;
@@ -62,17 +69,20 @@ export default class extends Component {
 
     return (
       <>
-        <Header muscles={muscles} />
+        <Header
+          muscles={muscles}
+          onExerciseCreate={this.handleExerciseCreate}
+        />
         <Exercises
           exercise={exercise}
           exercises={exercises}
           category={category}
-          onSelect={this.handleExerciseSelected}
+          onSelect={this.handleExerciseSelect}
         />
         <Footer
           category={category}
           muscles={muscles}
-          onSelect={this.handleCategorySelected}
+          onSelect={this.handleCategorySelect}
         />
       </>
     );

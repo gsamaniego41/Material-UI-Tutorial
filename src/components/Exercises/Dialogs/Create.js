@@ -49,6 +49,27 @@ export default withStyles(styles)(
       });
     };
 
+    handleSubmit = () => {
+      // TODO: validate
+
+      const {exercise} = this.state;
+
+      // App level method
+      this.props.onCreate({
+        // onCreate passed from App.js => Header.js => Create.js
+        ...exercise,
+        id: exercise.title.toLowerCase().replace(/ /g, "-")
+      });
+      this.setState({
+        open: false,
+        exercise: {
+          title: "",
+          description: "",
+          muscles: ""
+        }
+      });
+    };
+
     render() {
       const {
           open,
@@ -94,7 +115,9 @@ export default withStyles(styles)(
                     onChange={this.handleChange("muscles")}
                   >
                     {categories.map(category => (
-                      <MenuItem value={category}>{category}</MenuItem>
+                      <MenuItem key={category} value={category}>
+                        {category}
+                      </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
@@ -112,7 +135,11 @@ export default withStyles(styles)(
               </form>
             </DialogContent>
             <DialogActions>
-              <Button color="primary" variant="raised">
+              <Button
+                color="primary"
+                variant="raised"
+                onClick={this.handleSubmit}
+              >
                 Create
               </Button>
             </DialogActions>
