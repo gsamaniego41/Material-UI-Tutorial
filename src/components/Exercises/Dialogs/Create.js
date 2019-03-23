@@ -72,6 +72,13 @@ export default class extends Component {
               <FormControl>
                 <InputLabel htmlFor="muscles">Muscles</InputLabel>
                 {/* React Docs - Since for is a reserved word in JavaScript, React elements use htmlFor instead. */}
+
+                {/* SELECT BOX */}
+                <Select value={muscles} onChange={this.handleChange("muscles")}>
+                  {categories.map(category => (
+                    <MenuItem value={category}>{category}</MenuItem>
+                  ))}
+                </Select>
               </FormControl>
               <br />
               <TextField

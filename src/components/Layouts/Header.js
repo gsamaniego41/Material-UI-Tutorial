@@ -2,7 +2,7 @@ import React from "react";
 import {AppBar, Toolbar, Typography} from "@material-ui/core/";
 import CreateDialog from "../Exercises/Dialogs/Create";
 
-export default props => (
+export default ({muscles}) => (
   <AppBar position="static">
     <Toolbar>
       {/* Custom font sizes
@@ -17,7 +17,7 @@ export default props => (
         Exercise Database
       </Typography>
 
-      <CreateDialog />
+      <CreateDialog muscles={muscles} />
     </Toolbar>
   </AppBar>
 );
