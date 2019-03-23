@@ -8,7 +8,7 @@
 
 ~~#5 Dialogs & Icons~~
 
-#6 Forms, Inputs, and Styling
+~~#6 Forms, Inputs, and Styling~~
 
 #7 Lists & IconButtons
 
