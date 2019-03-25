@@ -30,7 +30,8 @@ export default ({
     id,
     title = "Welcome!",
     description = "Please select an exercise from the list on the left."
-  }
+  },
+  onDelete
 }) => (
   <Grid container>
     <Grid item sm>
@@ -53,7 +54,7 @@ export default ({
                   <ListItem key={id} button onClick={() => onSelect(id)}>
                     <ListItemText primary={title} />
                     <ListItemSecondaryAction>
-                      <IconButton>
+                      <IconButton onClick={() => onDelete(id)}>
                         <Delete />
                       </IconButton>
                     </ListItemSecondaryAction>

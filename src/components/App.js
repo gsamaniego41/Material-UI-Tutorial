@@ -60,6 +60,13 @@ export default class extends Component {
     }));
   };
 
+  handleExerciseDelte = id => {
+    this.setState(({exercises}) => ({
+      // ({exercises}) same as prevState.exercises
+      exercises: exercises.filter(ex => ex.id !== id)
+    }));
+  };
+
   render() {
     const exercises = this.getExercisesByMuscleGroup(),
       {category, exercise} = this.state;
@@ -78,6 +85,7 @@ export default class extends Component {
           exercises={exercises}
           category={category}
           onSelect={this.handleExerciseSelect}
+          onDelete={this.handleExerciseDelte}
         />
         <Footer
           category={category}
