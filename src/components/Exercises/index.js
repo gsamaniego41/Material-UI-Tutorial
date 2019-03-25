@@ -1,12 +1,15 @@
 import React from "react";
 import {
   Grid,
-  Paper,
-  Typography,
+  IconButton,
   List,
   ListItem,
-  ListItemText
+  ListItemText,
+  ListItemSecondaryAction,
+  Paper,
+  Typography
 } from "@material-ui/core";
+import {Delete} from "@material-ui/icons";
 
 // Many ways to style - Material UI uses JSS
 const styles = {
@@ -49,6 +52,11 @@ export default ({
                 {exercises.map(({id, title}) => (
                   <ListItem key={id} button onClick={() => onSelect(id)}>
                     <ListItemText primary={title} />
+                    <ListItemSecondaryAction>
+                      <IconButton>
+                        <Delete />
+                      </IconButton>
+                    </ListItemSecondaryAction>
                   </ListItem>
                 ))}
               </List>
