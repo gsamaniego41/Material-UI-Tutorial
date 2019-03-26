@@ -53,7 +53,7 @@ export default class extends Component {
       exercises: [...exercises, exercise]
     }));
 
-  handleExerciseDelte = id =>
+  handleExerciseDelete = id =>
     this.setState(({exercises}) => ({
       // ({exercises}) same as prevState.exercises
       exercises: exercises.filter(ex => ex.id !== id)
@@ -65,9 +65,16 @@ export default class extends Component {
       exercise: exercises.find(ex => ex.id === id)
     });
 
+  handleExerciseEdit = exercise =>
+    this.setState(({exercises}) => ({
+      // find the exercises that don't have the id of exercise.id
+      // filter them down, then add the new exercise obj to the new arr
+      exercises: [...exercises.filter(ex => ex.id !== exercise.id), exercise]
+    }));
+
   render() {
     const exercises = this.getExercisesByMuscleGroup(),
-      {category, exercise} = this.state;
+      {category, exercise, editMode} = this.state;
 
     return (
       <>
@@ -76,11 +83,14 @@ export default class extends Component {
           onExerciseCreate={this.handleExerciseCreate}
         />
         <Exercises
+          category={category}
+          editMode={editMode}
           exercise={exercise}
           exercises={exercises}
-          category={category}
+          muscles={muscles} // from store.js
+          onEdit={this.handleExerciseEdit}
           onSelect={this.handleExerciseSelect}
-          onDelete={this.handleExerciseDelte}
+          onDelete={this.handleExerciseDelete}
           onSelectEdit={this.handleExerciseSelectEdit}
         />
         <Footer

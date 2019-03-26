@@ -11,6 +11,8 @@ import {
 } from "@material-ui/core";
 import {Delete, Edit} from "@material-ui/icons";
 
+import Form from "./Form";
+
 // Many ways to style - Material UI uses JSS
 const styles = {
   Paper: {
@@ -31,8 +33,11 @@ export default ({
     title = "Welcome!",
     description = "Please select an exercise from the list on the left."
   },
+  muscles,
   onDelete,
-  onSelectEdit
+  onEdit,
+  onSelectEdit,
+  editMode
 }) => (
   <Grid container>
     <Grid item sm>
@@ -72,10 +77,16 @@ export default ({
     </Grid>
     <Grid item sm>
       <Paper style={styles.Paper}>
-        <Typography variant="display1">{title}</Typography>
-        <Typography variant="subheading" style={{marginTop: 20}}>
-          {description}
-        </Typography>
+        {editMode ? (
+          <Form muscles={muscles} onSubmit={onEdit} />
+        ) : (
+          <>
+            <Typography variant="display1">{title}</Typography>
+            <Typography variant="subheading" style={{marginTop: 20}}>
+              {description}
+            </Typography>
+          </>
+        )}
       </Paper>
     </Grid>
   </Grid>
