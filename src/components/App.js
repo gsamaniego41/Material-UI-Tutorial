@@ -29,13 +29,12 @@ export default class extends Component {
     );
   }
 
-  handleCategorySelect = category => {
+  handleCategorySelect = category =>
     this.setState({
       category
     });
-  };
 
-  handleExerciseSelect = id => {
+  handleExerciseSelect = id =>
     this.setState(
       // exercise refers to the currently selected
       // exercise that we clicked on from the left pane
@@ -47,35 +46,28 @@ export default class extends Component {
       // reason: we don't wanna call this.state.exercise bec
       // something else in the app might have already change it while setState runs (asynchronous)
     );
-  };
 
-  handleExerciseCreate = exercise => {
+  handleExerciseCreate = exercise =>
     // ({exercises}) === prevState.exercises
     this.setState(({exercises}) => ({
       exercises: [...exercises, exercise]
     }));
-  };
 
-  handleExerciseDelte = id => {
+  handleExerciseDelte = id =>
     this.setState(({exercises}) => ({
       // ({exercises}) same as prevState.exercises
       exercises: exercises.filter(ex => ex.id !== id)
     }));
-  };
 
-  handleExerciseSelectEdit = id => {
+  handleExerciseSelectEdit = id =>
     this.setState({
       editMode: true,
       exercise: exercises.find(ex => ex.id === id)
     });
-  };
 
   render() {
     const exercises = this.getExercisesByMuscleGroup(),
       {category, exercise} = this.state;
-    // same as:
-    //    const exercises = this.getExercisesByMuscleGroup();
-    //    const {category} = this.state;
 
     return (
       <>
