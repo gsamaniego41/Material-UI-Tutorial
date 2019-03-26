@@ -108,7 +108,7 @@ export default withStyles(styles)(
           />
           <br />
           <Button color="primary" variant="raised" onClick={this.handleSubmit}>
-            Create
+            {this.props.exercise ? "Edit" : "Create"}
           </Button>
         </form>
       );
