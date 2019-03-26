@@ -9,7 +9,7 @@ import {
   Paper,
   Typography
 } from "@material-ui/core";
-import {Delete} from "@material-ui/icons";
+import {Delete, Edit} from "@material-ui/icons";
 
 // Many ways to style - Material UI uses JSS
 const styles = {
@@ -31,7 +31,8 @@ export default ({
     title = "Welcome!",
     description = "Please select an exercise from the list on the left."
   },
-  onDelete
+  onDelete,
+  onSelectEdit
 }) => (
   <Grid container>
     <Grid item sm>
@@ -54,6 +55,9 @@ export default ({
                   <ListItem key={id} button onClick={() => onSelect(id)}>
                     <ListItemText primary={title} />
                     <ListItemSecondaryAction>
+                      <IconButton onClick={() => onSelectEdit(id)}>
+                        <Edit />
+                      </IconButton>
                       <IconButton onClick={() => onDelete(id)}>
                         <Delete />
                       </IconButton>

@@ -4,7 +4,7 @@ import Exercises from "./Exercises";
 import {muscles, exercises} from "../store";
 
 export default class extends Component {
-  state = {exercises, category: "", exercise: {}};
+  state = {exercises, category: "", exercise: {}, editMode: false};
 
   getExercisesByMuscleGroup() {
     const initExercises = muscles.reduce(
@@ -63,6 +63,13 @@ export default class extends Component {
     }));
   };
 
+  handleExerciseSelectEdit = id => {
+    this.setState({
+      editMode: true,
+      exercise: exercises.find(ex => ex.id === id)
+    });
+  };
+
   render() {
     const exercises = this.getExercisesByMuscleGroup(),
       {category, exercise} = this.state;
@@ -82,6 +89,7 @@ export default class extends Component {
           category={category}
           onSelect={this.handleExerciseSelect}
           onDelete={this.handleExerciseDelte}
+          onSelectEdit={this.handleExerciseSelectEdit}
         />
         <Footer
           category={category}
