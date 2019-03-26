@@ -60,6 +60,7 @@ export default class extends Component {
     }));
 
   handleExerciseSelectEdit = id =>
+    // id comes from Exercises/index.js when we call onSelectEdit()
     this.setState({
       editMode: true,
       exercise: exercises.find(ex => ex.id === id)

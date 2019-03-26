@@ -18,11 +18,26 @@ const styles = theme => ({
 
 export default withStyles(styles)(
   class extends Component {
-    state = {
+    state = this.getInitialState();
+
+    /* 
+    {
       title: "",
       description: "",
       muscles: ""
     };
+     */
+    // instead of setting the state to empty strings,
+    getInitialState() {
+      const {exercise} = this.props;
+      return exercise
+        ? exercise
+        : {
+            title: "",
+            description: "",
+            muscles: ""
+          };
+    }
 
     handleChange = name => ({target: {value}}) =>
       this.setState({[name]: value});

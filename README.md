@@ -10,9 +10,9 @@
 
 ~~#6 Forms, Inputs, and Styling~~
 
-#7 Lists & IconButtons
+~~#7 Lists & IconButtons~~
 
-#8 Forms (Part 1)
+~~#8 Forms (Part 1)~~
 
 #9 Forms (Part 2)
 

@@ -28,6 +28,7 @@ export default ({
   exercises,
   category,
   onSelect,
+  exercise,
   exercise: {
     id,
     title = "Welcome!",
@@ -78,7 +79,11 @@ export default ({
     <Grid item sm>
       <Paper style={styles.Paper}>
         {editMode ? (
-          <Form muscles={muscles} onSubmit={onEdit} />
+          <Form
+            muscles={muscles}
+            onSubmit={onEdit}
+            exercise={exercise} //exercise from App
+          />
         ) : (
           <>
             <Typography variant="display1">{title}</Typography>
