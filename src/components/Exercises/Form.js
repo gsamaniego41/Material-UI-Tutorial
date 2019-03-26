@@ -20,14 +20,6 @@ export default withStyles(styles)(
   class extends Component {
     state = this.getInitialState();
 
-    /* 
-    {
-      title: "",
-      description: "",
-      muscles: ""
-    };
-     */
-    // instead of setting the state to empty strings,
     getInitialState() {
       const {exercise} = this.props;
       return exercise
@@ -37,6 +29,25 @@ export default withStyles(styles)(
             description: "",
             muscles: ""
           };
+    }
+
+    /* 
+        Problem: 
+        When I click on the edit icon the first time, 
+        the fields populate w/ the correct placeholder info
+        But when another exercise is selected,
+        the fields don't change
+
+        To fix: use componentWillReceiveProps, takes in nextProps arg
+      */
+    componentWillReceiveProps({exercise}) {
+      // destructuring nextProps
+      this.setState({
+        ...exercise
+        // we're listening to the update (new props)
+        // and updating the state (fields) w/ those props
+        // essentially syncing props w/ the state of this component
+      });
     }
 
     handleChange = name => ({target: {value}}) =>
