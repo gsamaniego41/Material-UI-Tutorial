@@ -20,9 +20,14 @@ export default (class extends Component {
 
   handleClose = () => this.setState({open: false});
 
+  handleFormSubmit = exercise => {
+    this.handleClose();
+    this.props.onCreate(exercise);
+  };
+
   render() {
     const {open} = this.state,
-      {muscles, onEdit} = this.props;
+      {muscles} = this.props;
 
     return (
       <>
@@ -32,9 +37,7 @@ export default (class extends Component {
 
         {/* MODAL */}
         <Dialog open={open} onClose={this.handleClose}>
-          <DialogTitle id="form-dialog-title">
-            Create a New Exercise
-          </DialogTitle>
+          <DialogTitle>Create a New Exercise</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Please fill out the form below
@@ -42,7 +45,7 @@ export default (class extends Component {
 
             <Form
               muscles={muscles} //from Header
-              onSubmit={onEdit}
+              onSubmit={this.handleFormSubmit}
             />
           </DialogContent>
         </Dialog>
