@@ -40,17 +40,15 @@ export default class extends Component {
     });
 
   handleExerciseSelect = id =>
-    this.setState(
-      // exercise refers to the currently selected
-      // exercise that we clicked on from the left pane
-
-      prevState => ({
-        exercise: prevState.exercises.find(ex => ex.id === id)
-      })
-      // prevState is a callback that returns a new state obj that's going to be merged
-      // reason: we don't wanna call this.state.exercise bec
-      // something else in the app might have already change it while setState runs (asynchronous)
-    );
+    this.setState(prevState => ({
+      exercise: prevState.exercises.find(ex => ex.id === id),
+      editMode: false
+      /*
+        When edit is clicked and user chooses a different exercise,
+        we want to display the newly selected exercise's details, not the edit form
+        editMode: false here fixes that
+      */
+    }));
 
   handleExerciseCreate = exercise =>
     // ({exercises}) === prevState.exercises
@@ -61,7 +59,10 @@ export default class extends Component {
   handleExerciseDelete = id =>
     this.setState(({exercises}) => ({
       // ({exercises}) same as prevState.exercises
-      exercises: exercises.filter(ex => ex.id !== id)
+      exercises: exercises.filter(ex => ex.id !== id),
+      editMode: false,
+      exercise: {}
+      // closes edit form and resets selected exercise
     }));
 
   handleExerciseSelectEdit = id =>
