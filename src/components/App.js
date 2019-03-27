@@ -4,7 +4,12 @@ import Exercises from "./Exercises";
 import {muscles, exercises} from "../store";
 
 export default class extends Component {
-  state = {exercises, category: "", exercise: {}, editMode: false};
+  state = {
+    exercises,
+    category: "",
+    exercise: {},
+    editMode: false
+  };
 
   getExercisesByMuscleGroup() {
     const initExercises = muscles.reduce(
@@ -70,7 +75,9 @@ export default class extends Component {
     this.setState(({exercises}) => ({
       // find the exercises that don't have the id of exercise.id
       // filter them down, then add the new exercise obj to the new arr
-      exercises: [...exercises.filter(ex => ex.id !== exercise.id), exercise]
+      exercises: [...exercises.filter(ex => ex.id !== exercise.id), exercise],
+      exercise, // updates the currently selected exercise (state) to the arg coming from Form.js onSubmit
+      editMode: false
     }));
 
   render() {

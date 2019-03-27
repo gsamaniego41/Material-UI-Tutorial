@@ -54,25 +54,22 @@ export default withStyles(styles)(
       this.setState({[name]: value});
 
     handleSubmit = () => {
-      const {exercise} = this.state;
-
       this.props.onSubmit({
-        ...exercise,
-        id: exercise.title.toLowerCase().replace(/ /g, "-")
+        id: this.state.title.toLowerCase().replace(/ /g, "-"),
+        ...this.state
+        /* 
+        currently, this creates an id on create
+        but if we're editing an exercise, the id already exists
+        so we want to create an id first, so if we're editing an exercise
+        it can overwrite the existing id
+        */
       });
-      this.setState({
-        open: false,
-        exercise: {
-          title: "",
-          description: "",
-          muscles: ""
-        }
-      });
+      this.setState(this.getInitialState()); // to clear the fields
     };
 
     render() {
       const {title, description, muscles} = this.state,
-        {classes, muscles: categories} = this.props;
+        {classes, exercise, muscles: categories} = this.props;
 
       return (
         <form>
@@ -108,7 +105,7 @@ export default withStyles(styles)(
           />
           <br />
           <Button color="primary" variant="raised" onClick={this.handleSubmit}>
-            {this.props.exercise ? "Edit" : "Create"}
+            {exercise ? "Edit" : "Create"}
           </Button>
         </form>
       );
